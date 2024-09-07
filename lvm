@@ -1,0 +1,37 @@
+=====yum===
+
+> yum -yellowdog update manger
+> yum -y install package name[to install package]
+> yum -y update package name 
+> yum -y remove package name 
+> yum history (to get info of package name with id)
+> yum history info <package name> to get id number so can undo package
+> yum history undo <package id>
+> yum repolist (to check respositary list)
+**repository means like a libary where things are stored**
+
+=====LVM===== 
+ 
+lvm=logic volume manager 
+
+> pvcreate /dev/sbd 
+> vgcraete vg2024 /dev/sdb
+> lvcreate -n (name) lv -L(length) +2G vg2024
+> mkfs.xfs /dev/vg2024/lv2024
+> mkdir /project2024
+> vim /etc/fstab 
+> mount /project2024
+> systemctl daemon-reload
+
+*vgs (to check the vg)
+*lvs (to check the lv)
+*lsblk (to check block)
+*df -h (disk free -h>human readable)
+
+====LV EXTEND====
+(how to extend the disk size)
+> lsblk
+> pvcreate /dev/sdc
+> vgextend vg2024 /dev/sdc
+lvextend -L +5G /dev/vg2024/lv2024 -r (-r means resize)
+xfs_growfs /dev/vg2024/lv2024 (if we didn't use -r)
