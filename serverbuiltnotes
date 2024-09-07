@@ -1,0 +1,19 @@
+              === server build ===
+> vim /etc/sysconfig/network-scripts/ifcfg-enp0s3  (path to network configuration file)
+BOOTPRO=static (change dhcp to static)
+ONBOOT=yes (change no to yes)
+add below lines
+IPADDR=192.168.1.206NEW ITEM
+NETMASK=255.255.255.0
+GATEWAY=192.168.1.1
+DNS=192.168.1.1
+DNS1=8.8.8.8
+> systemctl restart network (to restart network)
+
+====Server built=====
+> disk partitioning
+/boot 500mb
+swap 5000mb
+boisboot 500mb
+/var 4GB
+/ leave it empty
