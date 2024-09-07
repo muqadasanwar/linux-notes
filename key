@@ -1,0 +1,15 @@
+
+===ssh.keygen==
+(port 22)
+> ssh-keygen(to create a key)
+> cd .ssh <all dir starting with . are hidden dir>
+> ssh-copy-id <ipaddress of the server which you want to access>
+
+====tar=====
+> tar -cvzxf my.tar files name (x=extract, c=create, z=zip, v=verbose)
+> tar -cf tarfilename.tar <file name> (to create a tar file)
+> tar -cjvf tarfilename.tar <dir name>(to create a tar file with very low size)
+> tar -tf tarfilename.tar (to check the list of files inside tar file)
+> tar -xf tarfilename.tar  (to extract the tar file)
+> scp <file name> <ip of other server> ( to transfer file to other server through scp)
+> rsync <file name> <ip of other server> (to transfer file to other server through rsync)
