@@ -1,0 +1,54 @@
+=======github=================================================
+
+> yum -y install git
+> ssh-keygen 
+> cd .ssh
+> cat id_rsa.pub
+> git config --global user.email "muqadasanwar7@gmail.com"
+> git config --global user.name "muqadasanwar"
+> git clone git@github.com:mahmadg/umair-repo.git (paste key from GitHub)
+> cd muqadas(the repository)
+> vim file1
+> git add .
+> git commit -m "message"
+> git push
+> git branch(to check where you are) 
+> git checkout ( to check which branch)
+> git pull
+> git branch -D(give the branch name) -D means to delete
+
+======ansible====================================================
+
+> yum -y install ansible
+> cd .ssh
+> ll
+> ssh-copy-id 192.168.1.102
+> hostname -I
+> ssh 192.168.1.102
+> cd /etc/anible
+> cat ansible.cfg
+> vim hosts
+> ansible it -m ping
+> ansible-doc "themodjul"file(manual /EXA to see how its done)
+> ansible it -m file -a "path=/temp/ffile1 state=touch"
+> ansible it -m shell -a "shutdown now"
+(-m means modules)
+-m ping 	(Test we can logon)
+-m shell
+-m user		
+-m file		(Change file ownership, group and permissions)
+-m yum		( Installs, upgrade, downgrades, removes, and lists packages and groups with the `yum' package manager)
+-m copy
+-m service (present if available 
+-m lineinfile 	(to add any line or contenct in a file)
+-m lineinfile -a "path=/etc/test1 line=content create=yes" (to add any line or content in a file)
+-m lineinfile -a "path=/etc/test1 regexp=content state=absent" (to remove content of a file)
+-m command 	( The given command will be executed on all selected nodes.)
+-m stat		(gives facts for a file)
+-m dnf		( Installs, upgrade, removes, and lists packages and groups with the `dnf' package manager)
+
+*idompontency* (performing the operation multiple times yields the same result as if it were executed only once)
+
+*forks=5 	(to equally distribute information)(we can change the number after we vim the package)
+
+
