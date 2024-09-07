@@ -1,0 +1,50 @@
+============DOCKER==================================================
+Docker is an open-source platform that helps developers build, test, and deploy applications more quickly
+
+https://docs.docker.com/engine/install/rhel/
+
+Install on RHEL8
+
+> yum -y remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine podman runc
+
+> yum install -y yum-utils
+
+> yum-config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+
+> yum -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+> systemctl start docker && sudo systemctl enable docker
+
+> systemctl status docker
+
+> docker ps
+
+> docker images
+
+> docker pull httpd (from docker.hub)
+
+> docker pull mysql (from docker.hub)
+
+> docker ps -a (to check process)
+
+> docker ps
+
+> docker images
+
+> docker run -dit --restart always -p8080:80 --name linuxdmz-web -v /tmp/webpg:/usr/local/apache2/htdocs httpd
+
+> docker ps (to get container id)
+
+> docker exec -it b8b0e648ef2c /bin/bash
+                  (container id)
+> ls -l (when you are in the container)
+ 
+> cd htdocs/
+ 
+> ls -l
+ 
+> exit
+
+> cd /tmp/webpg/
+
+> vim index.html
