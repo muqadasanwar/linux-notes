@@ -1,0 +1,33 @@
+===NFS=========================================================
+
+NFS=network file system (port 2049)
+(HOST CONFIGURATION)
+> yum -y install nfs-utils
+> systemctl start nfs-server
+> systemctl enable nfs-server
+> systemctl status nfs-server
+> firewall-cmd --add-port=2049/tcp --permanent
+> firewall-cmd --add-port=2049/udp --permanent
+> firewall-cmd --add-port=111/tcp --permanent
+> firewall-cmd --add-port=111/udp --permanent
+> firewall-cmd --add-service=mountd --permanent
+> firewall-cmd --reload
+> firewall-cmd --list-all(to check)
+> mkdir /project2024
+> vim /etc/exports
+{in the file} /project2024 192.168.1.101{the ip of client site}(rw,sync,no_root_squash)
+> exportfs -a 
+
+
+========nfs clientsite==============================================
+
+(CLIENT CONFIGURATION)
+{on the clintesite} > showmount -e ipaddress
+> mkdir /nfs-share
+> vim/etc/fstab
+> 192.168.1.102{in which we edit}:/project2024/nfs-share nfs default 0 tab 0
+> mount /nfs-share/
+> df -h 
+> cd /nfs-share
+
+
