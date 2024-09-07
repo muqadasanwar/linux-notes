@@ -1,0 +1,114 @@
+=========playbook===========================================================
+
+Playbook=(more than 1 modules called playbook; its a combination of different commands)
+> vim server-list (this is the inventory list where you write the ip address) 
+> vim myplaybook.yml
+---
+- name: nfs-server
+  hosts: all
+  tasks:
+    - name: installing nfs server
+      yum:
+        name: nfs-utils
+        state: latest
+    - name: startingg service
+      service:
+        name: nfs-server
+        state: started
+        enabled: yes
+    - name: add ports
+      firewalld:
+        port: 2049/udp
+        permanent: yes
+        state: enabled
+        immediate: yes
+    - name: add ports
+      firewalld:
+        port: 2049/tcp
+        permanent: yes
+        state: enabled
+        immediate: yes
+    - name: add ports
+      firewalld:
+        port: 111/udp
+        permanent: yes
+        state: enabled
+        immediate: yes
+   - name: add ports
+      firewalld:
+        port: 111/tcp
+        permanent: yes
+        state: enabled
+        immediate: yes
+   - name: add service
+      firewalld:
+        service: mountd
+        permanent: yes
+        state: enabled
+        immediate: yes
+   - name: create directory
+     file:
+        path: /dir1
+        state: directory
+  - name: adding line in file
+    lineinfile:
+        path: /etc/exports
+        line: '/project 192.168.1.115(rw,sync,no_root_squash)
+
+======clientsite-playbook========
+
+vim clientsite-playbook
+---
+- name: nfs client playbook
+  hosts: all
+  tasks: 
+ -name: createingg directory
+  file:
+    path: /dir2
+    state: directory
+ -name: make boot persistent
+  mount:
+    path: /dir2
+    src: 192.168.1.116:/project
+    fstype: nfs
+    state: mounted
+
+indentation: means where you are writring 
+(start at 1 and the name is at 3,the name of installing nfs is at 5, and all modules are at 7)
+
+> ansible-playbook -i server-list myplaybook.yml -c (to dry run and not implement)
+> ansible-playbook -i server-list myplaybook.yml --syntax
+ check= systemctl status nfs server 
+
+=========playbook for LVM============
+
+go to cd /all-yml 
+> vim lvm-server.yml
+>---
+  - name: lvm playbook
+    hosts: all
+    tasks:
+    - name: create vg
+      lvg:
+        vg: vg2
+        pvs: /dev/sde
+    - name: create lv
+      lvol:
+        vg: vg2
+        lv: lv2
+        size: 1G
+    - name: make a file system
+      filesystem:
+         fstype: xfs
+         dev: /dev/vg2/lv2
+    - name: creatingg directory
+      file:
+        path: /dir6
+        state: directory
+    - name: mounting directory
+      mount:
+        path: /dir6
+        src: /dev/vg2/lv2
+        fstype: xfs
+        state: mounted
+
