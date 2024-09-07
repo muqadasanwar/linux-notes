@@ -1,0 +1,23 @@
+=== user management ===
+
+
+useradd username 
+passwd username 
+id username [ to check the user]
+/etc/passwd
+/etc/group
+
+=== vim ===
+
+
+2 modes insret and esc
+gg to go the first line
+shift g to go to the last line 
+yy copy
+p paste
+dd delete a line 
+o to go to insert mode and next line
+I instert mode
+w save
+q quit
+q! to quit forcefully
