@@ -1,0 +1,73 @@
+=== work around ===
+
+1) >pwd 	(password) 
+2) >su -	(to switch as a root user) 
+3) >cd 		(to change dir) 
+4) 
+5) >cd .. 	(to one dir back)
+6) >ll 		(to check the long list)
+7O >ls 		(to check as short list) 
+8) >ls –ld
+9) >tree	(to get tree structure) 
+10) >cat 	(read) 
+11) >cp 	(copy) 
+12) >mv 	(move)
+13) >mkdir 	(to make a dir)
+14) >mkdir -p	(to make a tree structure)
+15) >touch> 	(to make file)
+16) >rmdir 	(remove empty directories)
+17) >rm – rf 	(to remove unempty file) 
+18) >chmod	(to change mode)
+read=4 write=2 xscute=1 (7 for all 3 permissions0
+
+19) >chown 	(change file owner and group)
+20) >ping 	(to check connectivity)
+21) >history 	(to get history
+22) >man 	(manually
+23) >echo 	(to edit) 
+24) >echo $?	(status of last command)
+25) >echo “ any line” >> (to append)
+26) >echo “any line” >	(override)
+27) >hostname	(to check hostname)
+28) >hostname –I (to check ip address)
+29) >id “username” (to get the id)
+30) >alias 	(alias new name='path' to write the full command of the nickname)
+31) >ps> report a snapshot of the current processes.
+32) >ps -ef
+33) >locate
+34) >clear 	(to clear screen)
+35) >uptime	(to check the systemlong its up and running, users and load average) 
+36) >w		(detailed info of the system)
+37) >lsblk	(to see the disk block)
+38) >df –h	( diskfree -h humanreadable)
+39) >rpm –qa	( red hat package manger -qa {question all})
+40) >yum –y 	(to install a package)
+41) >uname –a	(to check all the information)	
+42) >uname –r	( to check kernel version)
+43) >yum –y update kernel (to udate the kernel)
+44) >uname –n
+45)	shutdown –r
+46) >init 0	(to shutdown)
+47) >init 6	( to reboot)
+48) >exit	(get out)
+49) >head	(to check the first lines of the file)
+50) >tail	(to check the last line of the file)
+51) >top	(table of process)
+52) >df		(disk free)
+53) >du		(disk useage)
+54) >diff	(to check the difference between 2)
+55) >wc –l	(to show how many lines in a file)
+56) >whereis	(
+57) >who	(it will tell which user is logged in)
+58) >whoami	(it will tell which user is logged in)
+59) >sleep	(to put asleep)
+60) >scp	(filename root@ipaddress where to copy:/tmp)
+61) >rsync	(filename root@ipaddress where to copy:/tmp)
+62) >grep "string" filename
+63) >grep -i "string" filename (i=case senstivaity)
+64) >grep -v "string" filename (v means expect that string)
+65) >crontab -e *(min) *(hrs) *(date) *(month) *(week day)
+66) >crontab -l	(to see the schedule)
+67) >crontab -r (to cancel the schedule)
+68) >crontab -e -u user name (to set a task for local user)
+69) >crontab -e (****df -h > /tmp/file name)
