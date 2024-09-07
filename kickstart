@@ -1,0 +1,29 @@
+===kickstart and http===============================================
+
+Q- What is kickstart in Linux ?
+A kickstart file is a simple text file that contains configuration information for a Red Hat Enterprise Linux installation. The system reads this configuration information at boot time and carries out the installation process without any further input from you.
+
+> yum -y install pykickstart
+> yum -y install system-config-kickstart
+> system-config-kickstart (create a ks.cfg file)
+> yum -y install httpd
+> systemctl enable httpd --now (start and enable the httpd)
+> firewall-cmd --add-service=http --permanent
+> firewall-cmd --add-service=https --permanent
+> firewall-cmd --reload 
+> setenforce 0 
+> getenforce
+> mv ks.cfg /var/www/html/
+> cd /var/www/html
+> vim ks.cfg
+=====# Network information======
+network  --bootproto=static --device=ens192 --onboot=on --ipv6=auto --no-activate --ip=192.168.1.108 --netmask=255.255.255.0 --gateway=192.168.1.1 --nameserver=192.168.1.1 (give the ip of which you want to make)
+network  --hostname=vm108
+# Reboot after installation
+reboot
+eula --agreed
+> chmod 644 ks.cfg
+> ksvalidator ks.cfg
+(when you spin a new vm hit tab to edit)
+inst.ks=http://192.168.1.101/ks.cfg(the ip of which you made the file configuration)
+(after spinning a new vm go to setting and remove rocky image)
