@@ -1,0 +1,76 @@
+=======RAID============================================
+
+RAID(Reduntant Array of Independent Disk)
+
+RAID 0 (striping)
+- Not fault tolerant
+- Data is "striped" across multiple disks 
+- Adventage is speed
+
+RAID 1 (Mirroring and Duplexing)
+- Is fault tolerant 
+- Data is copied on more than 1 disk
+
+RAID 5 (Striping with Parity) 
+- Requires 3 or more disks
+- data is striped acroos multiple disks along with parity
+
+RAID 10 (1+0)
+- Combines RAID 1 and RAID 0
+- Benefits from the fault tolerance of RAID 1 and the speed of RAID 0
+
+
+=======NIC Bonding======================================================
+
+ - NIC(Network Interface card)
+bonding allows multiple network cards to work together as a single entity.
+
+- 2 are in use
+1- Round Robin
+2- Active Backup
+cat/proc/net/bonding/bond0
+nmcli conn show
+nmcli conn add
+
+> ifconfig (to check nic number)   
+
+In vcenter using add network adapter add a new network card.
+Generate a uid for the new card by using uuidgen ens224
+cp /etc/sysconfig/network-scripts/ifcfg-ens192 /etc/sysconfig/network-scripts/ifcfg-ens224
+edit the file with the new values
+uuidgen ens224
+
+> systemctl restart NetworkManager    (RHEL8)
+> cd
+> nmcli connection add type team con-name team0 ifname team0 ipv4.addresses 192.168.1.103/24 ipv4.gateway 192.168.1.1 ipv4.dns 192.168.1.1 ipv4.method manual autoconnect yes config '{"runner":{"name": "activebackup"}}'
+
+> man teamd.conf
+(to get the manual autoconnect go different terminal and man teamd.conf and go to /EXA)
+'{"runner":{"name": "activebackup"}}'
+
+> nmcli connection show 
+
+> nmcli connection add type team-slave con-name con1 ifname ens192 master team0
+> nmcli connection add type team-slave con-name con2 ifname ens224 master team0
+> nmcli connection up team-slave-ens192
+> nmcli connection up team-slave-ens224
+> teamdctl team0 state
+> ifconfig (to check)
+
+
+man teamd.conf
+teamdctl team0 state
+teamnl team0 options
+nmcli device up team0        (RHEL8)
+nmcli connection ifup ens224   (RHEL7)
+nmcli device up ens224        (RHEL8)
+
+hostname= hostname -I
+NIC name=ifconfig
+How long is the server up and running?runlevel
+When the host was rebooted in which runlevel?
+kernel list: uname -a
+Kernel running: uname -a
+CPU: lscpu
+
+
